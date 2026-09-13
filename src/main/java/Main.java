@@ -1,10 +1,6 @@
 package main.java;
 
 public class Main {
-    private Supermarket supermarket;
-    private Customer customer;
-    private String productName;
-    private int amount;
 
      public static void main(String[] args){
 
@@ -15,9 +11,9 @@ public class Main {
 
         Supermarket jumbo = new Supermarket(bread, fruit, cheese, toiletPaper);
 
-        Customer Max = new Customer("Max");
+        Customer max = new Customer("Max");
 
-        Max.goToSuperMarket(jumbo);
+        max.goToSuperMarket(jumbo);
 
          IO.println("Which product do you want to buy?");
          String productName = IO.readln().trim();
@@ -25,7 +21,7 @@ public class Main {
          IO.println("How many do you want to buy?");
          int amount = Integer.parseInt(IO.readln());
 
-         Max.buyItem(productName, amount);
+         max.buyItem(productName, amount);
     }
 
 }

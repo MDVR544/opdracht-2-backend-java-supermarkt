@@ -1,7 +1,5 @@
 package main.java;
 
-import java.util.Objects;
-
 import static java.util.Objects.requireNonNull;
 
 public class Supermarket {
