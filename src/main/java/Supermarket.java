@@ -1,22 +1,17 @@
 package main.java;
 
+import java.util.List;
+
 import static java.util.Objects.requireNonNull;
 
 public class Supermarket {
-    private Product bread;
-    private Product fruit;
-    private Product cheese;
-    private Product toiletPaper;
+      private List<Product> products;
+      private String name;
 
-    public Supermarket(Product bread, Product fruit, Product cheese, Product toiletPaper){
-        requireNonNull(bread);
-        requireNonNull(fruit);
-        requireNonNull(cheese);
-        requireNonNull(toiletPaper);
-        this.bread = bread;
-        this.fruit = fruit;
-        this.cheese = cheese;
-        this.toiletPaper = toiletPaper;
+    public Supermarket(List<Product> products, String name){
+        requireNonNull(products);
+        this.products = products;
+        this.name = name;
     }
 
     public void buyItem(Product product, int amount){
@@ -28,19 +23,22 @@ public class Supermarket {
             System.out.println("You cannot buy " + amount + " " + product.getName() + " we only have " + product.getAmount() + " " + product.getName() + " in stock.");
         }
     }
-    public void buyBread(int amount){
-        buyItem(this.bread, amount);
+    public List<Product> getProducts() {
+        return products;
     }
 
-    public void buyFruit(int amount){
-        buyItem(this.fruit, amount);
+    public void restockItem(String productName, int amount){
+        for (Product products : this.products) {
+            if (products.getName().equalsIgnoreCase(productName)){
+               int restockAmount = products.getAmount() + amount;
+                products.setAmount(restockAmount);
+                return;
+            }
+        }
+        System.out.println(productName + " is not on stock.");
     }
 
-    public void buyCheese(int amount){
-        buyItem(this.cheese, amount);
-    }
-
-    public void buyToiletPaper(int amount){
-        buyItem(this.toiletPaper, amount);
+    public String getName() {
+        return name;
     }
 }

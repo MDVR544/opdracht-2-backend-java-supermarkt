@@ -1,7 +1,5 @@
 package main.java;
 
-import java.util.Objects;
-
 public class Customer {
     private String name;
     private Supermarket supermarket;
@@ -17,18 +15,18 @@ public class Customer {
     public void buyItem(String productName, int amount){
         if (this.supermarket == null){
             System.out.println("Select a supermarket to go to first");
-        } else if(Objects.equals(productName, "bread")){
-            supermarket.buyBread(amount);
-        } else if(Objects.equals(productName, "fruit")){
-            supermarket.buyFruit(amount);
-        } else if(Objects.equals(productName, "cheese")){
-            supermarket.buyCheese(amount);
-        } else if(Objects.equals(productName, "toiletPaper")){
-            supermarket.buyToiletPaper(amount);
-        } else {
-            System.out.println("Product not available in supermarket");
+            return;
         }
+        for (Product products : this.supermarket.getProducts()) {
+            if (productName.equalsIgnoreCase(products.getName())){
+                this.supermarket.buyItem(products, amount);
+                return;
+            }
+            }
+        System.out.println(this.supermarket.getName() + "does not sell " + productName);
     }
 
-
+    public Supermarket getSupermarket() {
+        return supermarket;
+    }
 }
